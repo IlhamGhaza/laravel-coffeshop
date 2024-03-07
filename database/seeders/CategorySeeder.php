@@ -12,7 +12,6 @@ class CategorySeeder extends Seeder
      */
     public function run(): void
     {
-        //factpry
         \App\Models\Category::factory(10)->create();
     }
 }

@@ -63,22 +63,19 @@
                                     </div>
                                 @enderror
                             </div>
-
                             <div class="form-group">
-                                <label>Harga</label>
-                                <input type="text"
-                                    class="form-control @error('price') is-invalid @enderror"
-                                    name="price" value="{{ number_format($product->price, 0, ',', '.') }}">
+                                <label>Price</label>
+                                <input type="number"
+                                    class="form-control @error('price')
+                                is-invalid
+                            @enderror"
+                                    name="price" value="{{ $product->price }}">
                                 @error('price')
                                     <div class="invalid-feedback">
                                         {{ $message }}
                                     </div>
                                 @enderror
                             </div>
-
-
-
-
                             <div class="form-group">
                                 <label>Stock</label>
                                 <input type="number"
