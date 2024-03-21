@@ -9,17 +9,6 @@ use App\Models\OrderItem;
 
 class OrderController extends Controller
 {
-    //index order
-    public function index()
-    {
-        $orders = Order::all();
-        return response()->json([
-            'status' => 'success',
-            'data' => $orders
-        ], 200);
-    }
-
-    //save order
     public function saveOrder(Request $request)
     {
         //validate request
@@ -28,6 +17,7 @@ class OrderController extends Controller
             'sub_total' => 'required',
             'tax' => 'required',
             'discount' => 'required',
+            'discount_amount' => 'required',
             'service_charge' => 'required',
             'total' => 'required',
             'payment_method' => 'required',
@@ -44,6 +34,7 @@ class OrderController extends Controller
             'sub_total' => $request->sub_total,
             'tax' => $request->tax,
             'discount' => $request->discount,
+            'discount_amount' => $request->discount_amount,
             'service_charge' => $request->service_charge,
             'total' => $request->total,
             'payment_method' => $request->payment_method,
@@ -68,4 +59,48 @@ class OrderController extends Controller
             'data' => $order
         ], 200);
     }
+
+    public function index(Request $request)
+    {
+        $start_date = $request->input('start_date');
+        $end_date = $request->input('end_date');
+        if ($start_date && $end_date) {
+            $orders = Order::whereBetween('created_at', [$start_date, $end_date])->get();
+        } else {
+            $orders = Order::all();
+        }
+        return response()->json([
+            'status' => 'success',
+            'data' => $orders
+        ], 200);
+    }
+
+    public function summary(Request $request)
+    {
+        $startDate = $request->input('start_date');
+        $endDate = $request->input('end_date');
+        $query = Order::query();
+        if ($startDate && $endDate) {
+            $query->whereBetween('created_at', [$startDate, $endDate]);
+        }
+        $totalRevenue = $query->sum('payment_amount');
+        $totalDiscount = $query->sum('discount_amount');
+        $totalTax = $query->sum('tax');
+        $totalServiceCharge = $query->sum('service_charge');
+        $totalSubtotal = $query->sum('sub_total');
+        $total = $totalSubtotal - $totalDiscount - $totalTax + $totalServiceCharge;
+        return response()->json([
+            'status' => 'success',
+            'data' => [
+                'total_revenue' => $totalRevenue,
+                'total_discount' => $totalDiscount,
+                'total_tax' => $totalTax,
+                'total_subtotal' => $totalSubtotal,
+                'total_service_charge' => $totalServiceCharge,
+                'total' => $total,
+            ]
+        ], 200);
+    }
+
 }
+

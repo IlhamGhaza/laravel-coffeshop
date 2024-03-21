@@ -12,7 +12,7 @@ class DiscountSeeder extends Seeder
      */
     public function run(): void
     {
-        \App\Models\Discount::factory(5)->create();
+        \App\Models\Discount::factory(3)->create();
         //manual input
         \App\Models\Discount::create([
             'name' => 'Welcome WCB',

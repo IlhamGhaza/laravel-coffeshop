@@ -46,14 +46,6 @@
                     </li>
                 </ul>
 
-                <ul class="dropdown-menu">
-                    <li class=''>
-                        <a class="nav-link" href=" ">Stock</a>
-                    </li>
-                </ul>
-            </li>
-        </ul>
-        
         <ul class="sidebar-menu">
             <li class="nav-item dropdown">
                 <a href="#" class="nav-link has-dropdown"><i class="fas fa-fire"></i><span>User Manajement</span></a>
