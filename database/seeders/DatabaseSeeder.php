@@ -16,9 +16,15 @@ class DatabaseSeeder extends Seeder
         \App\Models\User::factory(20)->create();
 
         \App\Models\User::factory()->create([
-            'name' => 'Test Ilham User',
-            'email' => 'ilham@fic14.com',
+            'name' => 'Test Ilham ',
+            'email' => 'ilham@admin.com',
             'password' => Hash::make('12345678'),
+            'role' => 'admin',
+        ]);
+        \App\Models\User::factory()->create([
+            'name' => 'Test user ',
+            'email' => 'user@user.com',
+            'password' => Hash::make('45678912'),
             'role' => 'admin',
         ]);
 
@@ -26,7 +32,7 @@ class DatabaseSeeder extends Seeder
             CategorySeeder::class,
             ProductSeeder::class,
             DiscountSeeder::class,
-            //EmployeSeeder::class,
+            //EmployeeSeeder::class,
 
         ]);
     }
