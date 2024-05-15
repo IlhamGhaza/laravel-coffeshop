@@ -65,7 +65,7 @@ class CategoryController extends Controller
     //destroy category api
     public function destroy($id)
     {
-        $category = Category::find($id);
+        $category = Category::findOrFail($id);
         $category->delete();
         return response()->json([
             'status' => 'success',

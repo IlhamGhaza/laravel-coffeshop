@@ -33,25 +33,34 @@ class ProductController extends Controller
         $product->status = $request->status;
         $product->is_favorite = $request->is_favorite;
         $product->save();
-        return response()->json([
-            'status' => 'success',
-            'data' => $product
-        ], 200);
+        if ($product) {
+            return response()->json([
+                'success' => true,
+                'message' => 'Product Created',
+                'data' => $product
+            ], 201);
+        } else {
+            return response()->json([
+                'success' => false,
+                'message' => 'Product Failed to Save',
+            ], 409);
+        }
     }
+
 
     //show product api
-    public function show($id)
+    public function show(string $id)
     {
         $product = Product::find($id);
+        $product->load('category');
         return response()->json([
             'status' => 'success',
             'data' => $product
         ], 200);
     }
 
-    //update products_api
     //update product api
-    public function update(Request $request, $id)
+    public function update(Request $request, string $id)
     {
         $product = Product::find($id);
         $product->name = $request->name;
@@ -69,9 +78,9 @@ class ProductController extends Controller
     }
 
     //delete product api
-    public function destroy($id)
+    public function destroy(string $id)
     {
-        $product = Product::find($id);
+        $product = Product::findOrFail($id);
         $product->delete();
         return response()->json([
             'status' => 'success',

@@ -17,7 +17,7 @@
                 </ul>
                 <ul class="dropdown-menu">
                     <li class=''>
-                        <a class="nav-link" href="  ">orders</a>
+                        <a class="nav-link" href="oerders.index">orders</a>
                     </li>
                 </ul>
             </li>
@@ -40,20 +40,12 @@
                         <a class="nav-link" href="{{ route('categories.index') }}">Categories</a>
                     </li>
                 </ul>
-                <ul class="dropdown-menu">
+                {{-- <ul class="dropdown-menu">
                     <li class=''>
                         <a class="nav-link" href=" ">discount</a>
                     </li>
-                </ul>
+                </ul> --}}
 
-                <ul class="dropdown-menu">
-                    <li class=''>
-                        <a class="nav-link" href=" ">Stock</a>
-                    </li>
-                </ul>
-            </li>
-        </ul>
-        
         <ul class="sidebar-menu">
             <li class="nav-item dropdown">
                 <a href="#" class="nav-link has-dropdown"><i class="fas fa-fire"></i><span>User Manajement</span></a>
@@ -63,11 +55,28 @@
                     </li>
 
                 </ul>
-                <ul class="dropdown-menu">
+                {{-- <ul class="dropdown-menu">
                     <li class=''>
                         <a class="nav-link" href="  ">Empoyes</a>
                     </li>
+                </ul> --}}
+            </li>
+        </ul>
+
+        <ul class="sidebar-menu">
+            <li class="nav-item dropdown">
+                <a href="#" class="nav-link has-dropdown"><i class="fas fa-fire"></i><span>Storage</span></a>
+                <ul class="dropdown-menu">
+                    <li class=''>
+                        <a class="nav-link" href="">Stock</a>
+                    </li>
+
                 </ul>
+                {{-- <ul class="dropdown-menu">
+                    <li class=''>
+                        <a class="nav-link" href="  ">Empoyes</a>
+                    </li>
+                </ul> --}}
             </li>
         </ul>
 
