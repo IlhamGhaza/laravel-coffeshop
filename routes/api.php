@@ -62,5 +62,6 @@ Route::get('/order-sales', [App\Http\Controllers\Api\OrderItemController::class,
 
 
 //employes api
+// Route::apiResource('/api-employees', App\Http\Controllers\Api\EmployeesController::class)->middleware('auth:sanctum');
 
 
