@@ -2,121 +2,132 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
-    // index
-    public function index()
+    /**
+     * Display a listing of the resource.
+     */
+    public function index(Request $request)
     {
-        $products = Product::paginate(10);
-        return view('pages.products.index', compact('products'));
+        $products = Product::paginate(5);
+        return view('pages.product.index', compact('products'));
     }
 
-    // create
+    /**
+     * Show the form for creating a new resource.
+     */
     public function create()
     {
-        $categories = DB::table('categories')->get();
-        return view('pages.products.create', compact('categories'));
+        $categories = Category::all();
+        return view('pages.product.create', compact('categories'));
     }
 
-    // store
+    /**
+     * Store a newly created resource in storage.
+     */
     public function store(Request $request)
     {
-        // validate the request...
-        $request->validate([
-            'name' => 'required',
-            'description' => 'required',
-            'price' => 'required|numeric',
-            'category_id' => 'required',
-            'stock' => 'required|numeric',
-            'status' => 'required|boolean',
-            'is_favorite' => 'required|boolean',
+        $filename = time() . '.' . $request->image->extension();
+        $request->image->storeAs('public/products', $filename);
 
-        ]);
-
-        // store the request...
-        $product = new Product;
+        $product = new \App\Models\Product;
         $product->name = $request->name;
         $product->description = $request->description;
-        $product->price = $request->price;
+        $product->price = (int) $request->price;
+        $product->stock = (int) $request->stock;
         $product->category_id = $request->category_id;
-        $product->stock = $request->stock;
-        $product->status = $request->status;
-        $product->is_favorite = $request->is_favorite;
-
+        $product->image = $filename;
         $product->save();
 
-        //save image
-        if ($request->hasFile('image')) {
-            $image = $request->file('image');
-            $image->storeAs('public/products', $product->id . '.' . $image->getClientOriginalExtension());
-            $product->image = 'storage/products/' . $product->id . '.' . $image->getClientOriginalExtension();
-            $product->save();
-        }
-
-        return redirect()->route('products.index')->with('success', 'Product created successfully');
+        return redirect()->route('product.index')->with('success', 'Product successfully created');
     }
 
-    // show
-    public function show($id)
+    /**
+     * Display the specified resource.
+     */
+    public function show(string $id)
     {
-        return view('pages.products.show');
+        //
     }
 
-    // edit
-    public function edit($id)
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(string $id)
     {
-        $product = Product::findOrFail($id);
-        $categories = DB::table('categories')->get();
-        return view('pages.products.edit', compact('product', 'categories'));
+        $product = Product::findOrfail($id);
+        $categories = Category::all();
+        return view('pages.product.edit', compact('categories', 'product'));
     }
 
-    // update
+    /**@cannot ('update', Model::class) 
+        
+    @endcannot
+     * Update the specified resource in storage.
+     */
     public function update(Request $request, $id)
     {
-        // validate the request...
+        // Validasi data yang dikirimkan
         $request->validate([
-            'name' => 'required',
-            'description' => 'required',
+            'name' => 'required|string|max:255',
+            'description' => 'nullable|string',
             'price' => 'required|numeric',
-            'category_id' => 'required',
-            'stock' => 'required|numeric',
-            'status' => 'required|boolean',
-            'is_favorite' => 'required|boolean',
+            'stock' => 'required|integer',
+            'category_id' => 'required|exists:categories,id', // Pastikan kategori yang dipilih ada di tabel categories
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Ubah menjadi nullable karena tidak selalu diubah
         ]);
 
-        // update the request...
-        $product = Product::find($id);
-        $product->name = $request->name;
-        $product->description = $request->description;
-        $product->price = $request->price;
-        $product->category_id = $request->category_id;
-        $product->stock = $request->stock;
-        $product->status = $request->status;
-        $product->is_favorite = $request->is_favorite;
-        $product->save();
+        // Cari produk berdasarkan ID
+        $product = \App\Models\Product::findOrFail($id);
 
-        //save image
+        // Simpan gambar baru jika ada yang diunggah
         if ($request->hasFile('image')) {
-            $image = $request->file('image');
-            $image->storeAs('public/products', $product->id . '.' . $image->getClientOriginalExtension());
-            $product->image = 'storage/products/' . $product->id . '.' . $image->getClientOriginalExtension();
-            $product->save();
+            $filename = time() . '.' . $request->image->extension();
+            $request->image->storeAs('public/products', $filename);
+            // Hapus gambar lama jika ada
+            if ($product->image) {
+                Storage::delete('public/products/' . $product->image);
+            }
+            $product->image = $filename;
         }
 
-        return redirect()->route('products.index')->with('success', 'Product updated successfully');
+        // Perbarui data produk
+        $product->name = $request->name;
+        $product->description = $request->description;
+        $product->price = (int) $request->price;
+        $product->stock = (int) $request->stock;
+        $product->category_id = $request->category_id;
+
+        // Simpan perubahan
+        $product->save();
+
+        // Redirect ke halaman index produk dengan pesan sukses
+        return redirect()->route('product.index')->with('success', 'Product successfully updated');
     }
 
-    // destroy
-    public function destroy($id)
-    {
-        // delete the request...
-        $product = Product::find($id);
-        $product->delete();
 
-        return redirect()->route('products.index')->with('success', 'Product deleted successfully');
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(string $id)
+    {
+
+        $user = Product::findOrFail($id);
+        $user->delete();
+        return redirect()->route('product.index');
+    }
+
+    public function get()
+    {
+        $products = Product::all();
+        $products->load('category');
+        return response()->json(['status'=>200, 'data' => $products], 200);
     }
 }

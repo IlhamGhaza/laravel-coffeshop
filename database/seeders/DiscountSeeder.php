@@ -12,33 +12,32 @@ class DiscountSeeder extends Seeder
      */
     public function run(): void
     {
-        \App\Models\Discount::factory(3)->create();
-        //manual input
         \App\Models\Discount::create([
-            'name' => 'Welcome WCB',
-            'description' => 'Member baru WCB',
-            'type' => 'percentage',
-            'value' => 20,
-            'status' => 'active',
-            'expired_date' => '2025-01-31'
-        ]);
-
-        \App\Models\Discount::create([
-            'name' => 'New Year',
-            'description' => 'Discount New Year',
+            'name' => 'Discount 1',
+            'description' => 'Discount 1',
             'type' => 'percentage',
             'value' => 10,
             'status' => 'active',
-            'expired_date' => '2025-01-07'
-        ]);
+            'expired_date' => '2024-03-13',
 
+        ]);
         \App\Models\Discount::create([
-            'name' => 'Black Friday',
-            'description' => 'Discount Black Friday',
+            'name' => 'Discount 2',
+            'description' => 'Discount 2',
             'type' => 'percentage',
-            'value' => 15,
+            'value' => 30,
             'status' => 'active',
-            'expired_date' => '2025-12-31'
+            'expired_date' => '2024-03-13',
+
+        ]);
+        \App\Models\Discount::create([
+            'name' => 'Discount 3',
+            'description' => 'Discount 3',
+            'type' => 'percentage',
+            'value' => 20,
+            'status' => 'active',
+            'expired_date' => '2024-03-13',
+
         ]);
     }
 }

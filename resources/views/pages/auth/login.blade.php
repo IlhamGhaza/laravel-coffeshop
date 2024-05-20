@@ -1,6 +1,6 @@
 @extends('layouts.auth')
 
-@section('title', 'Login Admin Resto')
+@section('title', 'Login Resto POS')
 
 @push('style')
     <!-- CSS Libraries -->
@@ -28,16 +28,13 @@
                             {{ $message }}
                         </div>
                     @enderror
+
                 </div>
 
                 <div class="form-group">
                     <div class="d-block">
                         <label for="password" class="control-label">Password</label>
-                        <div class="float-right">
-                            <a href="auth-forgot-password.html" class="text-small">
-                                Forgot Password?
-                            </a>
-                        </div>
+
                     </div>
                     <input id="password" type="password"
                         class="form-control @error('password')
@@ -47,16 +44,16 @@
                     @error('password')
                         <div class="invalid-feedback">
                             {{ $message }}
-                        </div>
-                    @enderror
-                </div>
+                        @enderror
+
+                    </div>
 
 
-                <div class="form-group">
-                    <button type="submit" class="btn btn-primary btn-lg btn-block" tabindex="4">
-                        Login
-                    </button>
-                </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary btn-lg btn-block" tabindex="4">
+                            Login
+                        </button>
+                    </div>
             </form>
 
 

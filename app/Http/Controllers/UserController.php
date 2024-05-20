@@ -9,93 +9,59 @@ use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
-    // index
     public function index(Request $request)
     {
-        //get all users with pagination
+        // $users = DB::table('users')
+        // ->where('name','like','%'. $request->search. '%')
+        // ->paginate(5);
+        // return view('pages.user.index', compact('users'));
+
         $users = DB::table('users')
             ->when($request->input('name'), function ($query, $name) {
-                $query->where('name', 'like', '%' . $name . '%')
-                    ->orWhere('email', 'like', '%' . $name . '%');
+                return $query->where('name', 'like', '%' . $name . '%');
             })
-            ->paginate(10);
-        return view('pages.users.index', compact('users'));
+            ->paginate(5);
+        return view('pages.user.index', compact('users'));
     }
 
-    // create
     public function create()
     {
-        return view('pages.users.create');
+        return view('pages.user.create');
     }
-
-    // store
     public function store(Request $request)
     {
-        // validate the request...
-        $request->validate([
-            'name' => 'required',
-            'email' => 'required|email|unique:users',
-            'password' => 'required|min:8',
-            'role' => 'required|in:admin,staff,user',
-        ]);
-
-        // store the request...
-        $user = new User;
-        $user->name = $request->name;
-        $user->email = $request->email;
-        $user->password = Hash::make($request->password);
-        $user->role = $request->role;
-        $user->save();
-
-        return redirect()->route('users.index')->with('success', 'User created successfully');
+        $data = $request->all();
+        $data['password'] = Hash::make($request->input('password'));
+        User::create($data);
+        return redirect()->route('user.index');
     }
-
-    // show
-    public function show($id)
+    public function show()
     {
-        return view('pages.users.show');
     }
-
-    // edit
     public function edit($id)
     {
         $user = User::findOrFail($id);
-        return view('pages.users.edit', compact('user'));
+        return view('pages.user.edit', compact('user'));
     }
 
-    // update
     public function update(Request $request, $id)
     {
-        // validate the request...
-        $request->validate([
-            'name' => 'required',
-            'email' => 'required',
-            'role' => 'required|in:admin,staff,user',
-        ]);
+        $data = $request->all();
+        $user = User::findOrfail($id);
 
-        // update the request...
-        $user = User::find($id);
-        $user->name = $request->name;
-        $user->email = $request->email;
-        $user->role = $request->role;
-        $user->save();
-
-        //if password is not empty
-        if ($request->password) {
-            $user->password = Hash::make($request->password);
-            $user->save();
+        if (!$request->input('password')) {
+            $data['password'] = Hash::make($request->input('password'));
+        } else {
+            $data['password'] = $user->password;
         }
-
-        return redirect()->route('users.index')->with('success', 'User updated successfully');
+        $user->update($data);
+        return redirect()->route('user.index');
     }
 
-    // destroy
-    public function destroy($id)
-    {
-        // delete the request...
-        $user = User::find($id);
-        $user->delete();
+    public function destroy($id){
 
-        return redirect()->route('users.index')->with('success', 'User deleted successfully');
+        $user = User::findOrFail($id);
+        $user->delete();
+        return redirect()->route('user.index');
     }
 }

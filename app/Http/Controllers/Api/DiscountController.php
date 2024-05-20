@@ -8,57 +8,52 @@ use Illuminate\Http\Request;
 
 class DiscountController extends Controller
 {
-    public function index(){
 
-        $discounts= Discount::all();
 
-        return response()->json([
-            'status'=> 'success',
-            'data'=>$discounts
-        ],200);
-    }
-
-    public function store(Request $request){
-          //validate request
-          $request->validate([
-            'name' => 'required',
-            'description' => 'required',
-            'value' => 'required',
-        ]);
-        $discount = Discount::create($request->all());
-
-        return response()->json([
-            'status' => 'success',
-            'data' => $discount
-        ], 201);
-    }
-
-    public function update(Request $request, $id)
+    public function index()
     {
-        // Validate request
+        $discounts = Discount::all();
+        return response(['message' => 'success', 'data' => $discounts], 200);
+    }
+
+    // store
+    public function store(Request $request)
+    {
+
         $request->validate([
             'name' => 'required',
-            'description' => 'required',
+            'description' => 'nullable',
+            'type' => 'required',
             'value' => 'required',
+            'status' => 'nullable|in:active,inactive',
+            'expired_date' => 'nullable'
         ]);
 
-        $discount = Discount::findOrFail($id);
-        $discount->update($request->all());
+        $discounts = Discount::create($request->all());
 
-        return response()->json([
-            'status' => 'success',
-            'data' => $discount
-        ], 200);
+        return response()->json(['status' => 'success', 'data' => $discounts], 200);
     }
 
-    public function destroy($id)
+    public function update(Request $request)
     {
-        $discount = Discount::findOrFail($id);
-        $discount->delete();
 
-        return response()->json([
-            'status' => 'success',
-            'message' => 'Discount deleted successfully'
-        ], 200);
+        $request->validate([
+            'name' => 'required',
+            'description' => 'nullable',
+            'type' => 'required',
+            'value' => 'required',
+            'status' => 'nullable|in:active,inactive',
+            'expired_date' => 'nullable'
+        ]);
+
+        $discounts = Discount::where('id', $request->id)->first();
+
+        if (!$discounts) {
+            return response()->json(['status' => 'error', 'message' => 'Discount not found'], 404);
+        }
+
+        $discounts = Discount::where('id', $request->id)->update($request->all());
+
+        return response()->json(['status' => 'success', 'data' => $discounts], 200);
     }
 }
