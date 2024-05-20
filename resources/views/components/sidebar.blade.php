@@ -1,84 +1,72 @@
 <div class="main-sidebar sidebar-style-2">
     <aside id="sidebar-wrapper">
         <div class="sidebar-brand">
-            <a href="index.html">RESTO Ilham</a>
+            <a href="{{ url('home') }}">My Cafe</a>
         </div>
         <div class="sidebar-brand sidebar-brand-sm">
-            <a href="index.html">RB</a>
+            <a href="{{ url('home') }}">St</a>
         </div>
-
         <ul class="sidebar-menu">
-            <li class="nav-item dropdown">
-                <a href="#" class="nav-link has-dropdown"><i class="fas fa-fire"></i><span>Dashboard</span></a>
-                <ul class="dropdown-menu">
-                    <li class='{{ Request::is('dashboard-general-dashboard') ? 'active' : '' }}'>
-                        <a class="nav-link" href="{{ url('dashboard-general-dashboard') }}">General Dashboard</a>
-                    </li>
-                </ul>
-                <ul class="dropdown-menu">
-                    <li class=''>
-                        <a class="nav-link" href="oerders.index">orders</a>
-                    </li>
-                </ul>
+
+            <li class="menu-header">Menu</li>
+            <ul class="sidebar-menu">
+                <li class="nav-item dropdown">
+                    <a href="#" class="nav-link has-dropdown"><i class="fas fa-users"></i><span>User Manajement</span></a>
+                    <ul class="dropdown-menu">
+                        <li class=''>
+                            <a class="nav-link" href="{{ route('user.index') }}">Users</a>
+                        </li>
+
+                    </ul>
+                    {{-- <ul class="dropdown-menu">
+                        <li class=''>
+                            <a class="nav-link" href="  ">Empoyes</a>
+                        </li>
+                    </ul> --}}
+                </li>
+            </ul>
+
+            <ul class="sidebar-menu">
+                <li class="nav-item dropdown">
+                    <a href="#" class="nav-link has-dropdown"><i class="fas fa-fire"></i><span>Warehouse</span></a>
+                    <ul class="dropdown-menu">
+                        <li class=''>
+                            <a class="nav-link" href="">Inventory</a>
+                        </li>
+
+                    </ul>
+                    <ul class="dropdown-menu">
+                        <li class=''>
+                            <a class="nav-link" href="  ">Suplier</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+
+            {{-- <li>
+                <a href="{{ route('user.index') }}" class="nav-link"><i class="fas fa-users"></i><span>Users</span></a>
+            </li> --}}
+
+            <li>
+                <a href="{{ route('category.index') }}" class="nav-link"><i class="fas fa-box"></i><span>Categories</span></a>
             </li>
-        </ul>
 
-
-
-        <ul class="sidebar-menu">
-            <li class="nav-item dropdown">
-                <a href="#" class="nav-link has-dropdown"><i class="fas fa-fire"></i><span>Product Manajement</span></a>
-
-                <ul class="dropdown-menu">
-                    <li class=''>
-                        <a class="nav-link" href="{{ route('products.index') }}">Products</a>
-                    </li>
-                </ul>
-
-                <ul class="dropdown-menu">
-                    <li class=''>
-                        <a class="nav-link" href="{{ route('categories.index') }}">Categories</a>
-                    </li>
-                </ul>
-                {{-- <ul class="dropdown-menu">
-                    <li class=''>
-                        <a class="nav-link" href=" ">discount</a>
-                    </li>
-                </ul> --}}
-
-        <ul class="sidebar-menu">
-            <li class="nav-item dropdown">
-                <a href="#" class="nav-link has-dropdown"><i class="fas fa-fire"></i><span>User Manajement</span></a>
-                <ul class="dropdown-menu">
-                    <li class=''>
-                        <a class="nav-link" href="{{ route('users.index') }}">Users</a>
-                    </li>
-
-                </ul>
-                {{-- <ul class="dropdown-menu">
-                    <li class=''>
-                        <a class="nav-link" href="  ">Empoyes</a>
-                    </li>
-                </ul> --}}
+            <li>
+                <a href="{{ route('product.index') }}" class="nav-link"><i class="fas fa-shopping-cart"></i><span>Products</span></a>
             </li>
-        </ul>
 
-        <ul class="sidebar-menu">
-            <li class="nav-item dropdown">
-                <a href="#" class="nav-link has-dropdown"><i class="fas fa-fire"></i><span>Storage</span></a>
-                <ul class="dropdown-menu">
-                    <li class=''>
-                        <a class="nav-link" href="">Stock</a>
-                    </li>
+            <li>
+                <a href="{{ route('order.index') }}" class="nav-link"><i class="fas fa-list-alt"></i><span>Order</span></a>
 
-                </ul>
-                {{-- <ul class="dropdown-menu">
-                    <li class=''>
-                        <a class="nav-link" href="  ">Empoyes</a>
-                    </li>
-                </ul> --}}
             </li>
-        </ul>
+
+            <li>
+                <a href="{{ route('customer.index') }}" class="nav-link"><i class="fas fa-user"></i><span>Customers</span></a>
+            </li>
+
+            <li>
+                <a href="{{ route('reservation.index')}}" class="nav-link"><i class="fas fa-calendar-alt"></i><span>Reservations</span></a>
+            </li>
 
     </aside>
 </div>
