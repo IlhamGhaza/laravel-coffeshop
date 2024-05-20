@@ -18,6 +18,7 @@ return new class extends Migration
             $table->text('description')->nullable();
             $table->string('image')->nullable();
             $table->integer('price');
+            // $table->foreignId('stock')->constrained('inventories')->onDelete('cascade');
             $table->integer('stock');
             $table->boolean('is_available')->default(true);
 
