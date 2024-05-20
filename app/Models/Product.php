@@ -28,4 +28,9 @@ class Product extends Model
         return $this->hasMany(OrderItem::class, 'id_product');
     }
 
+    // public function inventory(){
+    //     // return $this->hasOne(Inventory::class, 'stock');
+    //     return $this->belongsTo(Inventory::class, 'stock');
+    // }
+
 }
