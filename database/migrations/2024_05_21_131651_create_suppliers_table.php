@@ -17,21 +17,13 @@ return new class extends Migration
             $table->string('address');
             $table->timestamps();
         });
-
-        Schema::create('inventories', function (Blueprint $table) {
-            $table->id();
-            $table->string('item_name');
-            $table->integer('stock');
-            $table->string('unit');
-
-            $table->foreignId('supplier_id')->constrained('suppliers')->onDelete('cascade');
-            $table->timestamps();
-        });
     }
 
+    /**
+     * Reverse the migrations.
+     */
     public function down(): void
     {
-        Schema::dropIfExists('inventories');
         Schema::dropIfExists('suppliers');
     }
 };
