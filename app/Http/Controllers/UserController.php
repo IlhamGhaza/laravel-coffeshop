@@ -28,6 +28,7 @@ class UserController extends Controller
     {
         return view('pages.user.create');
     }
+
     public function store(Request $request)
     {
         $data = $request->all();
@@ -35,6 +36,7 @@ class UserController extends Controller
         User::create($data);
         return redirect()->route('user.index');
     }
+    
     public function show()
     {
     }

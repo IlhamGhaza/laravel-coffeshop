@@ -18,11 +18,13 @@
                         </li>
 
                     </ul>
-                    {{-- <ul class="dropdown-menu">
+                    <ul class="dropdown-menu">
                         <li class=''>
-                            <a class="nav-link" href="  ">Empoyes</a>
+                            <a class="nav-link" href="
+                            {{ route('employee.index') }}
+                            ">Employees</a>
                         </li>
-                    </ul> --}}
+                    </ul>
                 </li>
             </ul>
 

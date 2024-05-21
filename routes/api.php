@@ -47,4 +47,7 @@ Route::post('/updateReservation/{id}', [ReservationController::class, 'updateRes
 
 Route::get('getOrderDetail', [OrderController::class, 'getOrderDetail'])->middleware('auth:sanctum');
 
+//employee
+
+
 

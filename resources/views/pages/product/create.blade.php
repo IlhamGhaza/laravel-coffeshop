@@ -81,7 +81,8 @@
                                     </div>
                                 @enderror
                             </div>
-                            <div class="form-group">
+
+                            {{-- <div class="form-group">
                                 <label>Stock</label>
                                 <input type="number"
                                     class="form-control @error('stock')
@@ -93,7 +94,7 @@
                                         {{ $message }}
                                     </div>
                                 @enderror
-                            </div>
+                            </div> --}}
 
                             <div class="form-group">
                                 <label class="form-label">Category</label>

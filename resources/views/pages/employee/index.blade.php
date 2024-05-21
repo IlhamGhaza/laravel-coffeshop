@@ -11,14 +11,14 @@
     <div class="main-content">
         <section class="section">
             <div class="section-header">
-                <h1>Users</h1>
+                <h1>Employee</h1>
                 <div class="section-header-button">
-                    <a href="{{ route('user.create') }}" class="btn btn-primary">Add New</a>
+                    <a href="{{ route('employee.create') }}" class="btn btn-primary">Add New</a>
                 </div>
                 <div class="section-header-breadcrumb">
                     <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
-                    <div class="breadcrumb-item"><a href="#">Users</a></div>
-                    <div class="breadcrumb-item">All Users</div>
+                    <div class="breadcrumb-item"><a href="#">Employee</a></div>
+                    <div class="breadcrumb-item">All Employee</div>
                 </div>
             </div>
             <div class="section-body">
@@ -29,7 +29,7 @@
                 </div>
                 <h2 class="section-title">Users</h2>
                 <p class="section-lead">
-                    You can manage all Users, such as editing, deleting and more.
+                    You can manage all Employee, such as editing, deleting and more.
                 </p>
 
 
@@ -49,7 +49,7 @@
                                     </select>
                                 </div>
                                 <div class="float-right">
-                                    <form method="GET" action="{{ route('user.index') }}">
+                                    <form method="GET" action="{{ route('employee.index') }}">
                                         <div class="input-group">
                                             <input type="text" class="form-control" placeholder="Search" name="name">
                                             <div class="input-group-append">
@@ -64,34 +64,46 @@
                                 <div class="table-responsive">
                                     <table class="table-striped table">
                                         <tr>
-
                                             <th>Name</th>
-                                            <th>Email</th>
-                                            {{-- <th>Phone</th> --}}
-                                            <th>Role</th>
+                                            <th>Phone</th>
+                                            <th>Position</th>
+                                            <th>Date Of Birth</th>
+                                            <th>Joining</th>
+                                            <th>Salary</th>
+                                            <th>Addres</th>
                                             <th>Action</th>
                                         </tr>
-                                        @foreach ($users as $user)
+                                        @foreach ($employees as $employee)
                                             <tr>
-
-                                                <td>{{ $user->name }}
+                                                <td>{{ $employee->name }}
                                                 </td>
                                                 <td>
-                                                    {{ $user->email }}
+                                                    {{ $employee->phone }}
+                                                <td>
+                                                    {{ $employee->position }}
                                                 </td>
-                                                {{-- <td>
-                                                    {{ $user->phone }}
-                                                </td> --}}
-                                                <td>{{ $user->role }}</td>
+                                                <td>
+                                                    {{ $employee->date_of_birth }}
+                                                </td>
+                                                <td>
+                                                    {{ $employee->date_of_joining }}
+                                                </td>
+                                                <td>
+                                                    {{ $employee->salary }}
+                                                </td>
+                                                <td>
+                                                    {{ $employee->address }}
+                                                </td>
+
                                                 <td>
                                                     <div class="d-flex justify-content-center">
-                                                        <a href='{{ route('user.edit', $user->id) }}'
+                                                        <a href='{{ route('employee.edit', $employee->id) }}'
                                                             class="btn btn-sm btn-info btn-icon">
                                                             <i class="fas fa-edit"></i>
                                                             Edit
                                                         </a>
 
-                                                        <form action="{{ route('user.destroy', $user->id) }}" method="POST"
+                                                        <form action="{{ route('employee.destroy', $employee->id) }}" method="POST"
                                                             class="ml-2">
                                                             <input type="hidden" name="_method" value="DELETE" />
                                                             <input type="hidden" name="_token"
@@ -109,7 +121,7 @@
                                     </table>
                                 </div>
                                 <div class="float-right">
-                                    {{ $users->withQueryString()->links() }}
+                                    {{ $employees->withQueryString()->links() }}
                                 </div>
                             </div>
                         </div>
