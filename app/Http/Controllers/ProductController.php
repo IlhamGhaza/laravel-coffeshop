@@ -41,7 +41,7 @@ class ProductController extends Controller
         $product->name = $request->name;
         $product->description = $request->description;
         $product->price = (int) $request->price;
-        $product->stock = (int) $request->stock;
+        // $product->stock = (int) $request->stock;
         $product->category_id = $request->category_id;
         $product->image = $filename;
         $product->save();
@@ -67,8 +67,8 @@ class ProductController extends Controller
         return view('pages.product.edit', compact('categories', 'product'));
     }
 
-    /**@cannot ('update', Model::class) 
-        
+    /**@cannot ('update', Model::class)
+
     @endcannot
      * Update the specified resource in storage.
      */
@@ -79,7 +79,7 @@ class ProductController extends Controller
             'name' => 'required|string|max:255',
             'description' => 'nullable|string',
             'price' => 'required|numeric',
-            'stock' => 'required|integer',
+            // 'stock' => 'required|integer',
             'category_id' => 'required|exists:categories,id', // Pastikan kategori yang dipilih ada di tabel categories
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Ubah menjadi nullable karena tidak selalu diubah
         ]);
@@ -102,7 +102,7 @@ class ProductController extends Controller
         $product->name = $request->name;
         $product->description = $request->description;
         $product->price = (int) $request->price;
-        $product->stock = (int) $request->stock;
+        // $product->stock = (int) $request->stock;
         $product->category_id = $request->category_id;
 
         // Simpan perubahan

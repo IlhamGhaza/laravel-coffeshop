@@ -57,7 +57,7 @@
                                             <th>Category</th>
                                             <th>Description</th>
                                             <th>Price</th>
-                                            <th>Stock</th>
+                                            {{-- <th>Stock</th> --}}
                                             <th>Action</th>
                                         </tr>
                                         @foreach ($products as $product)
@@ -83,9 +83,9 @@
                                                 <td>
                                                     {{ $product->price }}
                                                 </td>
-                                                <td>
+                                                {{-- <td>
                                                     {{ $product->stock }}
-                                                </td>
+                                                </td> --}}
                                                 <td>
                                                     <div class="d-flex justify-content-center">
                                                         <a href='{{ route('product.edit', $product->id) }}'

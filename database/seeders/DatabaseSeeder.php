@@ -40,6 +40,7 @@ class DatabaseSeeder extends Seeder
             DiscountSeeder::class,
             InventorySeeder::class,
             SupplierSeeder::class,
+            EmployeeSeeder::class,
         ]);
     }
 }

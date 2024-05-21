@@ -6,6 +6,9 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\EmployeeController;
+
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -34,6 +37,7 @@ Route::middleware(['auth'])->group(function(){
     Route::resource('customer', CustomerController::class);
     Route::resource('reservation', ReservationController::class);
     Route::resource('order', OrderController::class);
+    Route::resource('employee', EmployeeController::class);
 
 
 });
