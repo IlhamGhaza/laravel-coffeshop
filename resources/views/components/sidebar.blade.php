@@ -33,13 +33,17 @@
                     <a href="#" class="nav-link has-dropdown"><i class="fas fa-fire"></i><span>Warehouse</span></a>
                     <ul class="dropdown-menu">
                         <li class=''>
-                            <a class="nav-link" href="">Inventory</a>
+                            <a class="nav-link" href="
+                            {{ route('inventory.index') }}
+                            ">Inventory</a>
                         </li>
 
                     </ul>
                     <ul class="dropdown-menu">
                         <li class=''>
-                            <a class="nav-link" href="  ">Suplier</a>
+                            <a class="nav-link" href="
+                            {{ route('supplier.index') }}
+                            ">Suplier</a>
                         </li>
                     </ul>
                 </li>

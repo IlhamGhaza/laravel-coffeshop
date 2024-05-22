@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Inventory extends Model
 {
     use HasFactory;
-    protected $fillable = ['item_name', 'stock', 'unit', 'supplier_id'];
+    protected $fillable = ['name', 'stock', 'unit', 'supplier_id'];
 
     public function supplier()
     {
