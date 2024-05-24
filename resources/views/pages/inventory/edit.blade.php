@@ -27,45 +27,67 @@
             <div class="section-body">
                 <h2 class="section-title">Inventorys</h2>
 
+
+
                 <div class="card">
                     <form action="{{ route('inventory.update', $inventory) }}" method="POST">
                         @csrf
                         @method('PUT')
                         <div class="card-header">
-                            <h4>Edit Inventory</h4>
+                            <h4>Input Text</h4>
                         </div>
                         <div class="card-body">
                             <div class="form-group">
                                 <label>Name</label>
-                                <input type="text" name="name" value="{{ $inventory->name }}" class="form-control @error('name') is-invalid @enderror">
+                                <input type="text"
+                                    class="form-control @error('name')
+                                is-invalid
+                            @enderror"
+                                    name="name" value="{{ $inventory->name }}">
                                 @error('name')
-                                    <div class="invalid-feedback">{{ $message }}</div>
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
                                 @enderror
                             </div>
                             <div class="form-group">
                                 <label>Stock</label>
-                                <input type="number" name="stock" value="{{ $inventory->stock }}" class="form-control @error('stock') is-invalid @enderror">
+                                <input type="text"
+                                    class="form-control @error('stock')
+                                is-invalid
+                            @enderror"
+                                    name="stock" value="{{ $inventory->stock }}">
                                 @error('stock')
-                                    <div class="invalid-feedback">{{ $message }}</div>
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
                                 @enderror
                             </div>
+
                             <div class="form-group">
                                 <label>Unit</label>
-                                <input type="text" name="unit" value="{{ $inventory->unit }}" class="form-control @error('unit') is-invalid @enderror">
+                                <div class="input-group">
+                                    <input type="unit"
+                                        class="form-control @error('unit')
+                                is-invalid
+                            @enderror"
+                                        name="unit">
+                                </div>
                                 @error('unit')
-                                    <div class="invalid-feedback">{{ $message }}</div>
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
                                 @enderror
                             </div>
-                        </div>
 
-                        <div class="card-footer text-right">
-                            <button type="submit" class="btn btn-primary">Save Changes</button>
                         </div>
-                        
+                        <div class="card-footer text-right">
+                            <button class="btn btn-primary">Submit</button>
+                        </div>
                     </form>
                 </div>
-            </div>
 
+            </div>
         </section>
     </div>
 @endsection

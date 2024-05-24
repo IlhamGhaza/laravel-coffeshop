@@ -13,10 +13,9 @@ class InventorySeeder extends Seeder
      */
     public function run()
     {
-        // DB::table('inventories')->insert([
-        //     ['item_name' => 'Item 1', 'stock' => 100, 'unit' => 'pcs', 'supplier_id' => 1],
-        //     ['item_name' => 'Item 2', 'stock' => 200, 'unit' => 'pcs', 'supplier_id' => 2],
-        //     // Add more inventory items as needed, ensuring supplier_id matches suppliers table
-        // ]);
+        DB::table('inventories')->insert([
+            ['name' => 'Item 1', 'stock' => 100, 'unit' => 'pcs', 'supplier_id' => 1],
+            ['name' => 'Item 2', 'stock' => 200, 'unit' => 'pcs', 'supplier_id' => 2],
+        ]);
     }
 }

@@ -20,17 +20,17 @@
                 <div class="section-header-breadcrumb">
                     <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
                     <div class="breadcrumb-item"><a href="#">Forms</a></div>
-                    <div class="breadcrumb-item">Suppliers</div>
+                    <div class="breadcrumb-item">Inventory</div>
                 </div>
             </div>
 
             <div class="section-body">
-                <h2 class="section-title">Suppliers</h2>
+                <h2 class="section-title">Inventory</h2>
 
 
 
                 <div class="card">
-                    <form action="{{ route('supplier.store') }}" method="POST">
+                    <form action="{{ route('inventory.store') }}" method="POST">
                         @csrf
                         <div class="card-header">
                             <h4>Input Text</h4>
@@ -50,33 +50,29 @@
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <label>address</label>
-                                <input type="email"
-                                    class="form-control @error('address')
+                                <label>Stock</label>
+                                <input type="text"
+                                    class="form-control @error('stock')
                                 is-invalid
                             @enderror"
-                                    name="address">
-                                @error('address')
+                                    name="stock">
+                                @error('stock')
                                     <div class="invalid-feedback">
                                         {{ $message }}
                                     </div>
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <label>phone</label>
+                                <label>Unit</label>
                                 <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <div class="input-group-text">
-                                            <i class="fas fa-lock"></i>
-                                        </div>
                                     </div>
-                                    <input type="phone"
-                                        class="form-control @error('phone')
+                                    <input type="text"
+                                        class="form-control @error('unit')
                                 is-invalid
                             @enderror"
-                                        name="phone">
+                                        name="unit">
                                 </div>
-                                @error('phone')
+                                @error('unit')
                                     <div class="invalid-feedback">
                                         {{ $message }}
                                     </div>

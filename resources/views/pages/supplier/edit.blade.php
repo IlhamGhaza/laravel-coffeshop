@@ -20,12 +20,12 @@
                 <div class="section-header-breadcrumb">
                     <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
                     <div class="breadcrumb-item"><a href="#">Forms</a></div>
-                    <div class="breadcrumb-item">Inventory</div>
+                    <div class="breadcrumb-item">Supplier</div>
                 </div>
             </div>
 
             <div class="section-body">
-                <h2 class="section-title">Inventorys</h2>
+                <h2 class="section-title">Supplier</h2>
 
 
 
@@ -67,11 +67,6 @@
                             <div class="form-group">
                                 <label>phone</label>
                                 <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <div class="input-group-text">
-                                            <i class="fas fa-lock"></i>
-                                        </div>
-                                    </div>
                                     <input type="phone"
                                         class="form-control @error('phone')
                                 is-invalid
