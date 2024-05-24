@@ -13,6 +13,6 @@ class Inventory extends Model
     public function supplier()
     {
         return $this->belongsTo(Supplier::class);
-        return $this->hasMany(Product::class);
+        // return $this->hasMany(Product::class);
     }
 }

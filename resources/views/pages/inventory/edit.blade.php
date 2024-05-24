@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Edit supplier')
+@section('title', 'Edit inventory')
 
 @push('style')
     <!-- CSS Libraries -->
@@ -20,79 +20,52 @@
                 <div class="section-header-breadcrumb">
                     <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
                     <div class="breadcrumb-item"><a href="#">Forms</a></div>
-                    <div class="breadcrumb-item">Supplier</div>
+                    <div class="breadcrumb-item">Inventory</div>
                 </div>
             </div>
 
             <div class="section-body">
-                <h2 class="section-title">suppliers</h2>
-
-
+                <h2 class="section-title">Inventorys</h2>
 
                 <div class="card">
-                    <form action="{{ route('supplier.update', $supplier) }}" method="POST">
+                    <form action="{{ route('inventory.update', $inventory) }}" method="POST">
                         @csrf
                         @method('PUT')
                         <div class="card-header">
-                            <h4>Input Text</h4>
+                            <h4>Edit Inventory</h4>
                         </div>
                         <div class="card-body">
                             <div class="form-group">
                                 <label>Name</label>
-                                <input type="text"
-                                    class="form-control @error('name')
-                                is-invalid
-                            @enderror"
-                                    name="name" value="{{ $supplier->name }}">
+                                <input type="text" name="name" value="{{ $inventory->name }}" class="form-control @error('name') is-invalid @enderror">
                                 @error('name')
-                                    <div class="invalid-feedback">
-                                        {{ $message }}
-                                    </div>
+                                    <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <label>address</label>
-                                <input type="email"
-                                    class="form-control @error('address')
-                                is-invalid
-                            @enderror"
-                                    name="address" value="{{ $supplier->address }}">
-                                @error('address')
-                                    <div class="invalid-feedback">
-                                        {{ $message }}
-                                    </div>
+                                <label>Stock</label>
+                                <input type="number" name="stock" value="{{ $inventory->stock }}" class="form-control @error('stock') is-invalid @enderror">
+                                @error('stock')
+                                    <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>
-
                             <div class="form-group">
-                                <label>phone</label>
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <div class="input-group-text">
-                                            <i class="fas fa-lock"></i>
-                                        </div>
-                                    </div>
-                                    <input type="phone"
-                                        class="form-control @error('phone')
-                                is-invalid
-                            @enderror"
-                                        name="phone">
-                                </div>
-                                @error('phone')
-                                    <div class="invalid-feedback">
-                                        {{ $message }}
-                                    </div>
+                                <label>Unit</label>
+                                <input type="text" name="unit" value="{{ $inventory->unit }}" class="form-control @error('unit') is-invalid @enderror">
+                                @error('unit')
+                                    <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>
-
                         </div>
+
                         <div class="card-footer text-right">
-                            <button class="btn btn-primary">Submit</button>
+                            <button type="submit" class="btn btn-primary">Save Changes</button>
                         </div>
+                        
                     </form>
                 </div>
-
             </div>
+
         </section>
     </div>
 @endsection

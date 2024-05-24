@@ -49,7 +49,7 @@ class SupplierController extends Controller
         //
     }
     /**
-     * Show the form for editing the specified resource.
+     * edit the form for editing the specified resource.
      */
     public function edit(Supplier $supplier)
     {

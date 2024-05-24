@@ -60,6 +60,11 @@
             <li>
                 <a href="{{ route('product.index') }}" class="nav-link"><i class="fas fa-shopping-cart"></i><span>Products</span></a>
             </li>
+            <li>
+                <a href="
+                {{-- {{ route('discount.index') }} --}}
+                " class="nav-link"><i class="fas fa-tags"></i><span>Discount</span></a>
+            </li>
 
             <li>
                 <a href="{{ route('order.index') }}" class="nav-link"><i class="fas fa-list-alt"></i><span>Order</span></a>
