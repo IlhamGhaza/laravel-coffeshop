@@ -34,6 +34,7 @@ class DiscountController extends Controller
         return response()->json(['status' => 'success', 'data' => $discounts], 200);
     }
 
+    //update
     public function update(Request $request)
     {
 
@@ -56,4 +57,37 @@ class DiscountController extends Controller
 
         return response()->json(['status' => 'success', 'data' => $discounts], 200);
     }
+
+    //show
+    public function show(Request $request)
+    {
+        $discounts = Discount::where('id', $request->id)->first();
+
+        if (!$discounts) {
+            return response()->json(['status' => 'error', 'message' => 'Discount not found'], 404);
+        }
+
+        return response()->json(['status' => 'success', 'data' => $discounts], 200);
+    }
+
+    //destroy
+    public function destroy(Request $request)
+    {
+        $discounts = Discount::where('id', $request->id)->first();
+
+        if (!$discounts) {
+            return response()->json(['status' => 'error', 'message' => 'Discount not found'], 404);
+        }
+
+        $discounts = Discount::where('id', $request->id)->delete();
+
+        return response()->json(['status' => 'success',
+        'message' => 'Discount deleted successfully'],
+        200);
+    }
+
+
+
+
+
 }

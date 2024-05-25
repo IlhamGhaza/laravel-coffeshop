@@ -72,6 +72,10 @@ Make sure you have the following software installed on your machine:
     Laravel Coffee Shop.postman_collection.json
     ```
 
+## API Documentation
+
+Api documentation can be found in the postman collection file.
+
 ## Docker
 
 coming soon (＾▽＾)
