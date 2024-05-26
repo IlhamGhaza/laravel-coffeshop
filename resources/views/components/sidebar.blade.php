@@ -62,7 +62,7 @@
             </li>
             <li>
                 <a href="
-                {{-- {{ route('discount.index') }} --}}
+                {{ route('discount.index') }}
                 " class="nav-link"><i class="fas fa-tags"></i><span>Discount</span></a>
             </li>
 

@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\Api\DiscountController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\OrderController;
@@ -10,9 +9,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\SupplierController;
 Use App\Http\Controllers\InventoryController;
-
-// use App\Http\Controllers\DiscountController;
-
+use App\Http\Controllers\DiscountController;
 
 use Illuminate\Support\Facades\Route;
 
@@ -41,10 +38,10 @@ Route::middleware(['auth'])->group(function(){
     Route::resource('product', ProductController::class);
     Route::resource('customer', CustomerController::class);
     Route::resource('reservation', ReservationController::class);
-    // Route::resource('discount', DiscountController::class);
     Route::resource('order', OrderController::class);
     Route::resource('employee', EmployeeController::class);
     Route::resource('supplier', SupplierController::class);
     Route::resource('inventory', InventoryController::class);
+    Route::resource('discount', DiscountController::class);
 });
 

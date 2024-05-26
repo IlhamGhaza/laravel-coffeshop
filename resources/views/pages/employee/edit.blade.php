@@ -120,7 +120,7 @@
 
                         </div>
                         <div class="card-footer text-right">
-                            <button class="btn btn-primary">Submit</button>
+                            <button class="btn btn-primary">Update</button>
                         </div>
                     </form>
                 </div>
