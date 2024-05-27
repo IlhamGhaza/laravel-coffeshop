@@ -125,6 +125,7 @@
                         </div>
 
                         <div class="card-footer text-right">
+                            <button type="button" class="btn btn-secondary" onclick="window.location.href='{{ url()->previous() }}'">Cancel</button>
                             <button class="btn btn-primary" type="submit">Create</button>
                         </div>
                     </form>
