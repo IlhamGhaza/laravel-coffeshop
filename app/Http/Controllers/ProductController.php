@@ -41,7 +41,7 @@ class ProductController extends Controller
         $product->name = $request->name;
         $product->description = $request->description;
         $product->price = (int) $request->price;
-        // $product->stock = (int) $request->stock;
+        $product->stock = (int) $request->stock;
         $product->category_id = $request->category_id;
         $product->image = $filename;
         $product->save();

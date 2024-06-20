@@ -52,7 +52,7 @@
                                     <table class="table-striped table">
                                         <tr>
 
-                                            <th></th>
+                                            <th>image</th>
                                             <th>Name</th>
                                             <th>Category</th>
                                             <th>Description</th>
@@ -65,7 +65,7 @@
 
                                                 <td>
                                                     @if ($product->image)
-                                                    <img src="{{ asset('storage/products/'.$product->image) }}" alt=""
+                                                    <img src="{{asset('storage/products/'.$product->image) }}" alt=""
                                                         width="100px" class="img-thumbnail">
                                                         @else
                                                         <span class="badge badge-danger">No Image</span>
